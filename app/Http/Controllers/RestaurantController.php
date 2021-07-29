@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -24,7 +25,9 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('restaurant.create');
+        $menus = Menu::all();
+        return view('restaurant.create', ['menus' => $menus]);
+
     }
 
     /**
