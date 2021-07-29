@@ -14,7 +14,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        return view('menu.index', ['menus' => $menus]);
+
     }
 
     /**
