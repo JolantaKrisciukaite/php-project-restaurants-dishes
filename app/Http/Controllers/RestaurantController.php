@@ -82,7 +82,13 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        $restaurant = new Restaurant;
+        $restaurant->title = $request->restaurant_title;
+        $restaurant->customers = $request->restaurant_customers;
+        $restaurant->employess = $request->restaurant_employess;
+        $restaurant->menu_id = $request->menu_id;
+        $restaurant->save();
+        return redirect()->route('restaurant.index');
     }
 
     /**
