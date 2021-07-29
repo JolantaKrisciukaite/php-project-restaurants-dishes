@@ -96,8 +96,10 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
+        if($menu->menuRestaurant->count()){
+            return 'Couldn\'\t delete - restaurant has day menu.';
+        }
         $menu->delete();
         return redirect()->route('menu.index');
-
     }
 }

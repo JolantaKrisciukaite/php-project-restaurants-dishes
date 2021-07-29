@@ -99,12 +99,8 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        if($menu->restaurantMenu->count()){
-            return 'Couldn\'\t delete - restaurant has menu';
-        }
-        $menu->delete();
-        return redirect()->route('menu.index');
- 
+        $restaurant->delete();
+        return redirect()->route('restaurant.index');
 
     }
 }
