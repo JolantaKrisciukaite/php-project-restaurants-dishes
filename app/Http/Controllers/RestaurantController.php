@@ -68,7 +68,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        $menus = Menu::all();
+        return view('restaurant.edit', ['restaurant' => $restaurant, 'menus' => $menus]);
+
     }
 
     /**

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
     use HasFactory;
+
+    public function restaurantMenu()
+    {
+        return $this->belongsTo('App\Models\Menu', 'menu_id', 'id');
+    }
+    
 }
