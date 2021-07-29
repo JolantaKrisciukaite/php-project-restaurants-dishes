@@ -66,7 +66,7 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return view('menu.edit', ['menu' => $menu]);
     }
 
     /**
@@ -78,7 +78,14 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        //
+        $menu->title = $request->menu_title;
+        $menu->price = $request->menu_price;
+        $menu->weight = $request->menu_weight;
+        $menu->meat = $request->menu_meat;
+        $menu->about = $request->menu_about;
+        $menu->save();
+        return redirect()->route('menu.index');
+
     }
 
     /**
@@ -89,6 +96,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return redirect()->route('menu.index');
+
     }
 }
