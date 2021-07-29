@@ -35,7 +35,14 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $menu = new Menu;
+        $menu->title = $request->menu_title;
+        $menu->price = $request->menu_price;
+        $menu->weight = $request->menu_weight;
+        $menu->meat = $request->menu_meat;
+        $menu->about = $request->menu_about;
+        $menu->save();
+        return redirect()->route('menu.index');
     }
 
     /**
