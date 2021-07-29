@@ -40,13 +40,10 @@ class RestaurantController extends Controller
     {
         $restaurant = new Restaurant;
         $restaurant->title = $request->restaurant_title;
-        $restaurant->isbn = $request->restaurant_isbn;
-        $restaurant->pages = $request->restaurant_pages;
-        $restaurant->about = $request->restaurant_about;
-        $restaurant->menu_id = $request->menu_id;
+        $restaurant->customers = $request->restaurant_customers;
+        $restaurant->employess = $request->restaurant_employess;
         $restaurant->save();
         return redirect()->route('restaurant.index');
-
     }
 
     /**
