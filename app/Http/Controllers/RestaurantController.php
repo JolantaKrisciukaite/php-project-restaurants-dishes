@@ -15,7 +15,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::all();
+        return view('restaurant.index', ['restaurants' => $restaurants]);
+
     }
 
     /**
