@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
-// use Validator;
+use Validator;
 
 class MenuController extends Controller
 {
@@ -43,20 +43,20 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(),
-        // [
-        //     'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
-        //     'menu_price' => ['required', 'decimal:6,2'],
-        //     'menu_weight' => ['required'],
-        //     'menu_meat' => ['required'],
-        //     'menu_about' => ['required']
-        // ],
-        // );
+        $validator = Validator::make($request->all(),
+        [
+            'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
+            'menu_price' => ['required', 'decimal:6,2'],
+            'menu_weight' => ['required'],
+            'menu_meat' => ['required'],
+            'menu_about' => ['required']
+        ],
+        );
 
-        // if ($validator->fails()) {
-        //     $request->flash();
-        //     return redirect()->back()->withErrors($validator);
-        // }
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
 
         // elseif ($request->runs < $request->wins){
         //     return redirect()->back()->with('info_message', 'Menu wins couldn\'t\ be greater then menu runs.');
@@ -69,7 +69,7 @@ class MenuController extends Controller
         $menu->meat = $request->menu_meat;
         $menu->about = $request->menu_about;
         $menu->save();
-        return redirect()->route('menu.index');
+        return redirect()->route('master.index')->with('success_message', 'New Menu created successfully.');
     }
 
     /**
@@ -103,13 +103,35 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
+
+        $validator = Validator::make($request->all(),
+        [
+            'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
+            'menu_price' => ['required', 'decimal:6,2'],
+            'menu_weight' => ['required'],
+            'menu_meat' => ['required'],
+            'menu_about' => ['required']
+        ],
+
+        [
+            'master_title.min' => 'master title needs min. 3 symbols.',
+            'master_title.max' => 'master title needs max. 200 symbols.',
+            'master_price.decimal' => 'master price needs number per decimal point'
+        ]
+            
+        );
+        
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
         $menu->title = $request->menu_title;
         $menu->price = $request->menu_price;
         $menu->weight = $request->menu_weight;
         $menu->meat = $request->menu_meat;
         $menu->about = $request->menu_about;
         $menu->save();
-        return redirect()->route('menu.index');
+        return redirect()->route('menu.index')->with('success_message', 'Menu updated successfully');
 
     }
 
