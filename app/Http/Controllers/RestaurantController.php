@@ -15,10 +15,65 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
-        return view('restaurant.index', ['restaurants' => $restaurants]);
+        $restaurants = Restaurant::orderBy('type', 'asc') -> paginate(10)->withQueryString();
 
+        $dir = 'asc';
+        $sort = 'type';
+        $defaultMaster = 0;
+        $masters = Master::all();
+        $s = '';
+
+
+        // Rušiavimas
+
+        // pabaigti šią dalį
+
+        if ($request -> sort_by && $request -> dir) {
+            if ('type'== $request -> sort_by && 'asc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('type') -> paginate(10)->withQueryString();
+            } elseif ('type'== $request -> sort_by && 'desc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('type', 'desc') -> paginate(10)->withQueryString();
+                $dir = 'desc';
+            } elseif ('size'== $request -> sort_by && 'asc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('size') -> paginate(10)->withQueryString();
+                $sort = 'size';
+            } elseif ('size'== $request -> sort_by && 'desc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('size', 'desc') -> paginate(10)->withQueryString();
+                $dir = 'desc';
+                $sort = 'size';
+            } else {
+                $restaurant = Restaurant::paginate(10)->withQueryString();
+            }
+        }
+
+        // Filtravimas
+
+        elseif ($request -> master_id) {
+            $restaurants = Restaurant::where('master_id', (int)$request -> master_id) -> paginate(10)->withQueryString();
+            $defaultMaster = (int)$request -> master_id;
+        }
+
+        // Paieška
+
+        elseif ($request -> s) {
+            $restaurants = Restaurant::where('type', 'like', '%'.$request -> s.'%') -> paginate(10)->withQueryString();
+            $s = $request -> s;
+        } elseif ($request -> do_search) {
+            $restaurants = Restaurant::where('type', 'like', '') -> paginate(10)->withQueryString();
+        } else {
+            $restaurants = Restaurant::paginate(10)->withQueryString();
+        }
+
+        return view('restaurant.index', [
+            'restaurants' => $restaurants,
+            'dir' => $dir,
+            'sort' => $sort,
+            'masters' => $masters,
+            'defaultMaster' => $defaultMaster,
+            's' => $s
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

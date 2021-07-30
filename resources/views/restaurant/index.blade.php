@@ -20,18 +20,18 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-
-                        <h3 class="title">Restaurant</h3>
-                        <form action="{{ route('restaurant.index') }}" method="get" class="sort-form">
-                            <fieldset>
-                                <legend>Sort by</legend>
-                                <div>
-                                    <label>Type</label>
-                                    <input type="radio" name="sort_by" value="type" @if ('type' == $sort) checked @endif>
-                                    <label>Size</label>
-                                    <input type="radio" name="sort_by" value="size" @if ('size' == $sort) checked @endif>
-                                </div>
-                            </fieldset>
+                 
+                      <h3 class="title">Restaurants</h3>
+                      <form action="{{ route('restaurant.index') }}" method="get" class="sort-form">
+                          <fieldset>
+                              <legend>Sort by</legend>
+                              <div>
+                                  <label>Type</label>
+                                  <input type="radio" name="sort_by" value="type" @if ('type' == $sort) checked @endif>
+                                  <label>Size</label>
+                                  <input type="radio" name="sort_by" value="size" @if ('size' == $sort) checked @endif>
+                              </div>
+                          </fieldset>
 
                             <fieldset>
                                 <legend>Direction</legend>
