@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
-use Validator;
+// use Validator;
 
 class MenuController extends Controller
 {
@@ -43,24 +43,24 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),
-        [
-            'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
-            'menu_price' => ['required', 'decimal:6,2'],
-            'menu_weight' => ['required'],
-            'menu_meat' => ['required'],
-            'menu_about' => ['required']
-        ],
-        );
+        // $validator = Validator::make($request->all(),
+        // [
+        //     'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
+        //     'menu_price' => ['required', 'decimal:6,2'],
+        //     'menu_weight' => ['required'],
+        //     'menu_meat' => ['required'],
+        //     'menu_about' => ['required']
+        // ],
+        // );
 
-        if ($validator->fails()) {
-            $request->flash();
-            return redirect()->back()->withErrors($validator);
-        }
+        // if ($validator->fails()) {
+        //     $request->flash();
+        //     return redirect()->back()->withErrors($validator);
+        // }
 
-        elseif ($request->runs < $request->wins){
-            return redirect()->back()->with('info_message', 'Menu wins couldn\'t\ be greater then menu runs.');
-        }
+        // elseif ($request->runs < $request->wins){
+        //     return redirect()->back()->with('info_message', 'Menu wins couldn\'t\ be greater then menu runs.');
+        // }
 
         $menu = new Menu;
         $menu->title = $request->menu_title;
