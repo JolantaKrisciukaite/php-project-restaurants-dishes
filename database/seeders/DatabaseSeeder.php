@@ -30,23 +30,22 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
         ]);
 
-        // foreach(range(1, 20) as $_) {
-        //     DB::table('menus')->insert([
-        //         'title' => $faker->firstname,
-        //         'price' => rand(1, 10000),
-        //         'weight' => rand(1, 10000),
-        //         'weight' => rand(1, 10000),
-        //         'about' => $faker->realText(300, 5)
-        //     ]);
-        // }
+        foreach(range(1, 20) as $_) {
+            DB::table('menus')->insert([
+                'title' => $faker->firstname,
+                'price' => rand(1, 10000),
+                'weight' => rand(1, 10000),
+                'weight' => rand(1, 10000),
+                'about' => $faker->realText(300, 5)
+            ]);
+        }
         
-        // foreach(range(1, 200) as $_) {
-        //     DB::table('restaurants')->insert([
-        //         'name' => $faker->firstname,
-        //         'surname' => $faker->lastname,
-        //         'bet' => rand(1, 50000),
-        //         'menu_id' => rand(1, 20)
-        //     ]);
-        // }
+        foreach(range(1, 200) as $_) {
+            DB::table('restaurants')->insert([
+                'title' => $faker->firstname,
+                'customers' => $faker->lastname,
+                'employess' => rand(1, 50000),
+            ]);
+        }
     }
 }
