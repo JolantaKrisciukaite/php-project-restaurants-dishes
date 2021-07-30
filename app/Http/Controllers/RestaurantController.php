@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Validator;
 
 class RestaurantController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -107,13 +113,27 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'restaurant_title' => ['required', 'min:3', 'max:200'],
+            'restaurant_customers' => ['required', 'min:1', 'max:100'],
+            'restaurant_employess' => ['required', 'min:1', 'max:100'],
+            'restaurant_about' => ['required'],
+            'menu_id' => ['required', 'integer', 'min:1']
+        ],
+        );
+        
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
         $restaurant = new Restaurant;
         $restaurant->title = $request->restaurant_title;
         $restaurant->customers = $request->restaurant_customers;
         $restaurant->employess = $request->restaurant_employess;
         $restaurant->menu_id = $request->menu_id;
         $restaurant->save();
-        return redirect()->route('restaurant.index');
+        return redirect()->route('restaurant.index')->with('success_message', 'New Restaurant created.');
     }
 
     /**
@@ -149,14 +169,28 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'restaurant_title' => ['required', 'min:3', 'max:200'],
+            'restaurant_customers' => ['required', 'min:1', 'max:100'],
+            'restaurant_employess' => ['required', 'min:1', 'max:100'],
+            'restaurant_about' => ['required'],
+            'menu_id' => ['required', 'integer', 'min:1']
+        ],
+        
+        );
+        
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
         $restaurant = new Restaurant;
         $restaurant->title = $request->restaurant_title;
         $restaurant->customers = $request->restaurant_customers;
         $restaurant->employess = $request->restaurant_employess;
         $restaurant->menu_id = $request->menu_id;
         $restaurant->save();
-        return redirect()->route('restaurant.index');
-    }
+        return redirect()->route('restaurant.index')->with('success_message', 'Restaurant updated successfully.');
 
     /**
      * Remove the specified resource from storage.

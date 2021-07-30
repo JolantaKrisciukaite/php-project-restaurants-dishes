@@ -144,9 +144,9 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         if($menu->menuRestaurant->count()){
-            return 'Couldn\'\t delete - restaurant has day menu.';
+            return redirect()->route('menu.index')->with('info_message', 'Couldn\'\t delete - Menu is at the Restaurant');
         }
         $menu->delete();
-        return redirect()->route('menu.index');
+        return redirect()->route('menu.index')->with('success_message', 'Menu deleted successfully.');
     }
 }
