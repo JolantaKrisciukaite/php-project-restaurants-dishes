@@ -3,18 +3,17 @@
 @section('content')
 <div class="container">
    <div class="row justify-content-center">
-       <div class="col-md-8">
+       <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
            <div class="card">
                <div class="card-header">Menus</div>
 
                <div class="card-body">
-                @foreach ($menus as $menu)
-                <div class="index">
-                  {{$menu->title}} 
-                  {{$menu->price}} 
-                  {{$menu->weight}}
-                  {{$menu->meat}} 
-                  {{$menu->about}}
+                    @foreach ($menus as $menu)
+                    <div class="index">Title: {{$menu->title}}</div>
+                    <div class="index">Price: {{$menu->price}} </div>
+                    <div class="index">Weight: {{$menu->weight}}</div>
+                    <div class="index">Meat: {{$menu->meat}} </div>
+                    <div class="index">About: {{$menu->about}}</div>
                 </div>
                 <form method="POST" action="{{route('menu.destroy', $menu)}}">
                     <a href="{{route('menu.edit', [$menu])}}" class="editButton">Edit</a>
