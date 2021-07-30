@@ -1,23 +1,4 @@
-<form method="POST" action="{{route('restaurant.store')}}">
-    Title: <input type="text" name="restaurant_title">
-    Customers: <input type="text" name="restaurant_customers">
-    Employess: <input type="text" name="restaurant_employess">
-    <select name="menu_id">
-        @foreach ($menus as $menu)
-            <option value="{{$menu->id}}">
-                {{$menu->title}} 
-                {{$menu->price}} 
-                {{$menu->weight}}
-                {{$menu->meat}} 
-                {{$menu->about}}
-            </option>
-        @endforeach
- </select>
-    @csrf
-    <button type="submit">ADD</button>
- </form>
-
- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -46,6 +27,17 @@
                                 <input placeholder="Enter number of employess in the restaurant" type="text" name="restaurant_employess" class="form-control"
                                     value="{{ old('restaurant_employess') }}">
                             </div>
+
+                            <select class="index" name="menu_id"><br>
+                                @foreach ($menus as $menu)
+                                    <option value="{{ $menu->id }}">
+                                        Title: {{$menu->title}} 🖐
+                                        Price: {{$menu->price}} 💰
+                                        Weight: {{$menu->weight}} ⌛
+                                        Meat: {{$menu->meat}} 🍚
+                                    </option>
+                                @endforeach
+                            </select>
 
                             @csrf
                             <button class="addButtonCreate" type="submit">Add</button>

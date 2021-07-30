@@ -13,13 +13,13 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants = Restaurant::orderBy('type', 'asc') -> paginate(10)->withQueryString();
+        $restaurants = Restaurant::orderBy('title', 'asc') -> paginate(10)->withQueryString();
 
         $dir = 'asc';
-        $sort = 'type';
-        $defaultMaster = 0;
+        $sort = 'title';
+        $defaultMenu = 0;
         $menus = Menu::all();
         $s = '';
 
@@ -29,24 +29,24 @@ class RestaurantController extends Controller
 
         if ($request -> sort_by && $request -> dir) {
 
-            if ('type'== $request -> sort_by && 'asc'== $request -> dir) {
-                $restaurants = Restaurant::orderBy('type') -> paginate(10)->withQueryString();
+            if ('title'== $request -> sort_by && 'asc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('title') -> paginate(10)->withQueryString();
             } 
             
-            elseif ('type'== $request -> sort_by && 'desc'== $request -> dir) {
-                $restaurants = Restaurant::orderBy('type', 'desc') -> paginate(10)->withQueryString();
+            elseif ('title'== $request -> sort_by && 'desc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('title', 'desc') -> paginate(10)->withQueryString();
                 $dir = 'desc';
             } 
             
-            elseif ('size'== $request -> sort_by && 'asc'== $request -> dir) {
-                $restaurants = Restaurant::orderBy('size') -> paginate(10)->withQueryString();
-                $sort = 'size';
+            elseif ('customers'== $request -> sort_by && 'asc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('customers') -> paginate(10)->withQueryString();
+                $sort = 'customers';
             } 
             
-            elseif ('size'== $request -> sort_by && 'desc'== $request -> dir) {
-                $restaurants = Restaurant::orderBy('size', 'desc') -> paginate(10)->withQueryString();
+            elseif ('customers'== $request -> sort_by && 'desc'== $request -> dir) {
+                $restaurants = Restaurant::orderBy('customers', 'desc') -> paginate(10)->withQueryString();
                 $dir = 'desc';
-                $sort = 'size';
+                $sort = 'customers';
             } 
             
             else {
@@ -64,11 +64,15 @@ class RestaurantController extends Controller
         // Paieška
 
         elseif ($request -> s) {
-            $restaurants = Restaurant::where('type', 'like', '%'.$request -> s.'%') -> paginate(10)->withQueryString();
+            $restaurants = Restaurant::where('title', 'like', '%'.$request -> s.'%') -> paginate(10)->withQueryString();
             $s = $request -> s;
-        } elseif ($request -> do_search) {
-            $restaurants = Restaurant::where('type', 'like', '') -> paginate(10)->withQueryString();
-        } else {
+        } 
+        
+        elseif ($request -> do_search) {
+            $restaurants = Restaurant::where('title', 'like', '') -> paginate(10)->withQueryString();
+        } 
+        
+        else {
             $restaurants = Restaurant::paginate(10)->withQueryString();
         }
 
@@ -77,7 +81,7 @@ class RestaurantController extends Controller
             'dir' => $dir,
             'sort' => $sort,
             'menus' => $menus,
-            'defaultMaster' => $defaultMaster,
+            'defaultMenu' => $defaultMenu,
             's' => $s
         ]);
     }
