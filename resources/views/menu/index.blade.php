@@ -8,20 +8,21 @@
                <div class="card-header">Menus</div>
 
                <div class="card-body">
+                   
                     @foreach ($menus as $menu)
                     <div class="index">Title: {{$menu->title}}</div>
                     <div class="index">Price: {{$menu->price}} </div>
                     <div class="index">Weight: {{$menu->weight}}</div>
                     <div class="index">Meat: {{$menu->meat}} </div>
                     <div class="index">About: {{$menu->about}}</div>
-                </div>
-                <form method="POST" action="{{route('menu.destroy', $menu)}}">
-                    <a href="{{route('menu.edit', [$menu])}}" class="editButton">Edit</a>
-                 @csrf
-                 <button class="deleteButton" type="submit">Delete</button>
-                </form>
-                <br>
-              @endforeach
+               
+                    <form method="POST" action="{{route('menu.destroy', $menu)}}">
+                        <a href="{{route('menu.edit', [$menu])}}" class="editButton">Edit</a>
+                    @csrf
+                    <button class="deleteButton" type="submit">Delete</button>
+                    </form>
+                    <br>
+                @endforeach
               
                </div>
            </div>

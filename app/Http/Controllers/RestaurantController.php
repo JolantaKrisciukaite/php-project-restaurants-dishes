@@ -102,7 +102,6 @@ class RestaurantController extends Controller
     {
         $menus = Menu::all();
         return view('restaurant.create', ['menus' => $menus]);
-
     }
 
     /**
@@ -127,6 +126,7 @@ class RestaurantController extends Controller
             $request->flash();
             return redirect()->back()->withErrors($validator);
         }
+
         $restaurant = new Restaurant;
         $restaurant->title = $request->restaurant_title;
         $restaurant->customers = $request->restaurant_customers;
@@ -169,15 +169,15 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        $validator = Validator::make($request->all(),
-        [
+        $validator = Validator::make(
+            $request->all(),
+            [
             'restaurant_title' => ['required', 'min:3', 'max:200'],
             'restaurant_customers' => ['required', 'min:1', 'max:100'],
             'restaurant_employess' => ['required', 'min:1', 'max:100'],
             'restaurant_about' => ['required'],
             'menu_id' => ['required', 'integer', 'min:1']
         ],
-        
         );
         
         if ($validator->fails()) {
@@ -191,6 +191,7 @@ class RestaurantController extends Controller
         $restaurant->menu_id = $request->menu_id;
         $restaurant->save();
         return redirect()->route('restaurant.index')->with('success_message', 'Restaurant updated successfully.');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -203,4 +204,5 @@ class RestaurantController extends Controller
         $restaurant->delete();
         return redirect()->route('restaurant.index')>with('success_message', 'Restaurant deleted successfully.');
     }
+
 }
