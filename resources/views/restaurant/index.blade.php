@@ -78,7 +78,7 @@
                             <form method="POST" action="{{ route('restaurant.destroy', [$restaurant]) }}">
                                 <a href="{{ route('restaurant.edit', [$restaurant]) }}" class="editButton">Edit</a>
                                 @csrf
-                                <button class="deleteButtonRestaurant" type="submit">Delete</button>
+                                <button class="deleteButton" type="submit">Delete</button>
                             </form><br>
 
                             @empty 
