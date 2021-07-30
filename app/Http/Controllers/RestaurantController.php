@@ -117,7 +117,6 @@ class RestaurantController extends Controller
             'restaurant_title' => ['required', 'min:3', 'max:200'],
             'restaurant_customers' => ['required', 'min:1', 'max:100'],
             'restaurant_employess' => ['required', 'min:1', 'max:100'],
-            'restaurant_about' => ['required'],
             'menu_id' => ['required', 'integer', 'min:1']
         ],
         );
