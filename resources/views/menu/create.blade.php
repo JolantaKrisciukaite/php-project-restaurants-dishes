@@ -38,7 +38,8 @@
                             <div class="form-group">
                                 <label>About:</label>
                                 <textarea id="summernote" placeholder="Enter info about menu" type="text"
-                                    name="menu_about" class="form-control" value="{{ old('menu_about') }}"></textarea>
+                                    name="menu_about" class="form-control" value="{{ old('menu_about') }}">
+                                </textarea>
                             </div>
 
                             @csrf

@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <label>Price:</label>
-                        <input type="text" name="menu_price" class="form-control" value="{{old('menu_price', $menu->price)}}">
+                        <input type="text" name="menu_price" class="form-control" value="{{old('menu_price', $menu->price)}} ">
                     </div>
 
                     <div class="form-group">

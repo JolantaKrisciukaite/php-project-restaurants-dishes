@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
         ]);
 
-        $titles = ['Portofino', 'Dinner map', 'Bistro LaFa', 'Diverso', 'Mangal', 'Talutti', 'Kuhne', 'Dia', 'Spago', 'Indulge', 'Party Fowl', 'Rogo'];
+        $titles = ['Beef Stroganoff', 'Reuben', 'Sandwich', 'Waldorf Salad', 'French Fries', 'Chicken à la King', 'Lobster Newburg', 'Salisbury Steak', 'Carpaccio', 'Eggs Benedict', 'California Roll', 'Fettuccine Alfredo'];
         foreach(range(1, 20) as $_) {
             DB::table('menus')->insert([
                 'title' => $titles[rand(0, count($titles) - 1)],
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         
-        $titles = ['Beef Stroganoff', 'Reuben', 'Sandwich', 'Waldorf Salad', 'French Fries', 'Chicken à la King', 'Lobster Newburg', 'Salisbury Steak', 'Carpaccio', 'Eggs Benedict', 'California Roll', 'Fettuccine Alfredo'];
+        $titles = ['Portofino', 'Dinner map', 'Bistro LaFa', 'Diverso', 'Mangal', 'Talutti', 'Kuhne', 'Dia', 'Spago', 'Indulge', 'Party Fowl', 'Rogo'];
         foreach(range(1, 20) as $_) {
             DB::table('restaurants')->insert([
                 'title' => $titles[rand(0, count($titles) - 1)],
