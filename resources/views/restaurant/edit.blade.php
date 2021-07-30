@@ -1,21 +1,48 @@
-<form method="POST" action="{{route('restaurant.update',[$restaurant])}}">
-    Title: <input type="text" name="restaurant_title" value="{{$restaurant->title}}">
-    Customers: <input type="text" name="restaurant_customers" value="{{$restaurant->customers}}">
-    Employess: <input type="text" name="restaurant_employess" value="{{$restaurant->employess}}">
-    <select name="menu_id">
-        @foreach ($menus as $menu)
-            <option value="{{$menu->id}}" @if($menu->id == $restaurant->menu_id) selected @endif>
-                {{$menu->title}} 
-                {{$menu->price}} 
-                {{$menu->weight}}
-                {{$menu->meat}} 
-                {{$menu->about}}
-            </option>
-        @endforeach
-</select>
-    @csrf
-    <button type="submit">EDIT</button>
-</form>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+   <div class="row justify-content-center">
+       <div class="col-md-8">
+           <div class="card">
+               <div class="card-header">Edit new restaurant</div>
+
+               <div class="card-body">
+                <form method="POST" action="{{route('restaurant.update',[$restaurant])}}">
+
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" name="restaurant_title" class="form-control" value="{{old('restaurant_title', $restaurant->title)}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Customers:</label>
+                        <input type="text" name="restaurant_customers" class="form-control" value="{{old('restaurant_customers', $restaurant->customers)}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Employess:</label>
+                        <input type="text" name="restaurant_employess" class="form-control" value="{{old('restaurant_employess', $restaurant->employess)}}">
+                    </div>
+
+                    @csrf
+                    <button class="editButton" type="submit">Edit</button>
+                </form>
+                
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+       $('#summernote').summernote();
+     });
+    </script>
+    
+@endsection
+
 
 
 

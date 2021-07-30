@@ -17,7 +17,7 @@
                   {{$menu->about}}
                 </div>
                 <form method="POST" action="{{route('menu.destroy', $menu)}}">
-                    <a href="{{route('menu.edit',[$menu])}}" class="editButton">Edit</a>
+                    <a href="{{route('menu.edit', [$menu])}}" class="editButton">Edit</a>
                  @csrf
                  <button class="deleteButton" type="submit">Delete</button>
                 </form>
