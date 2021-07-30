@@ -67,11 +67,11 @@
                     <div class="card-body">
 
                         @forelse ($restaurants as $restaurant)
-                            <div class="index">Restaurant: {{ $restaurant->type }}</div>
+                            <div class="index">Restaurant: {{ $restaurant->title }}</div>
                             <div class="index">Restaurant customers: {{ $restaurant->customers }}</div>
                             <div class="index">Menu: 
                                 {{ $restaurant->restaurantMenu->title }}
-                                {{ $restaurant->restaurantMenu->price }}
+                                ({{ $restaurant->restaurantMenu->price }} €)
                             </div>
                             <form method="POST" action="{{ route('restaurant.destroy', [$restaurant]) }}">
                                 <a href="{{ route('restaurant.edit', [$restaurant]) }}" class="editButton">Edit</a>

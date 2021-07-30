@@ -69,7 +69,7 @@ class MenuController extends Controller
         $menu->meat = $request->menu_meat;
         $menu->about = $request->menu_about;
         $menu->save();
-        return redirect()->route('master.index')->with('success_message', 'New Menu created successfully.');
+        return redirect()->route('menu.index')->with('success_message', 'New Menu created successfully.');
     }
 
     /**
@@ -107,16 +107,16 @@ class MenuController extends Controller
         $validator = Validator::make($request->all(),
         [
             'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
-            'menu_price' => ['required', 'decimal:6,2'],
+            'menu_price' => ['required', 'decimal'],
             'menu_weight' => ['required'],
             'menu_meat' => ['required'],
             'menu_about' => ['required']
         ],
 
         [
-            'master_title.min' => 'master title needs min. 3 symbols.',
-            'master_title.max' => 'master title needs max. 200 symbols.',
-            'master_price.decimal' => 'master price needs number per decimal point'
+            'menu_title.min' => 'menu title needs min. 3 symbols.',
+            'menu_title.max' => 'menu title needs max. 200 symbols.',
+            // 'menu_price.decimal' => 'menu price needs number per decimal point'
         ]
             
         );
@@ -144,7 +144,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         if($menu->menuRestaurant->count()){
-            return redirect()->route('menu.index')->with('info_message', 'Couldn\'\t delete - Menu is at the Restaurant');
+            return redirect()->route('menu.index')->with('info_message', 'Couldn\'t delete - Restaurant has a Menu');
         }
         $menu->delete();
         return redirect()->route('menu.index')->with('success_message', 'Menu deleted successfully.');
