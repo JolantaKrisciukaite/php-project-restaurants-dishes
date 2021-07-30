@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="card">
-                    <div class="card-header">Create new restaurant</div>
+                    <div class="titleMenus">Create new restaurant</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('restaurant.store') }}">

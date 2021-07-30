@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="titleMenus">
                  
                       <h3 class="title">Restaurants</h3>
                       <form action="{{ route('restaurant.index') }}" method="get" class="sort-form">
