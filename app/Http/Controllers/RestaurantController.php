@@ -20,37 +20,45 @@ class RestaurantController extends Controller
         $dir = 'asc';
         $sort = 'type';
         $defaultMaster = 0;
-        $masters = Master::all();
+        $menus = Menu::all();
         $s = '';
-
 
         // Rušiavimas
 
         // pabaigti šią dalį
 
         if ($request -> sort_by && $request -> dir) {
+
             if ('type'== $request -> sort_by && 'asc'== $request -> dir) {
                 $restaurants = Restaurant::orderBy('type') -> paginate(10)->withQueryString();
-            } elseif ('type'== $request -> sort_by && 'desc'== $request -> dir) {
+            } 
+            
+            elseif ('type'== $request -> sort_by && 'desc'== $request -> dir) {
                 $restaurants = Restaurant::orderBy('type', 'desc') -> paginate(10)->withQueryString();
                 $dir = 'desc';
-            } elseif ('size'== $request -> sort_by && 'asc'== $request -> dir) {
+            } 
+            
+            elseif ('size'== $request -> sort_by && 'asc'== $request -> dir) {
                 $restaurants = Restaurant::orderBy('size') -> paginate(10)->withQueryString();
                 $sort = 'size';
-            } elseif ('size'== $request -> sort_by && 'desc'== $request -> dir) {
+            } 
+            
+            elseif ('size'== $request -> sort_by && 'desc'== $request -> dir) {
                 $restaurants = Restaurant::orderBy('size', 'desc') -> paginate(10)->withQueryString();
                 $dir = 'desc';
                 $sort = 'size';
-            } else {
+            } 
+            
+            else {
                 $restaurant = Restaurant::paginate(10)->withQueryString();
             }
         }
 
         // Filtravimas
 
-        elseif ($request -> master_id) {
-            $restaurants = Restaurant::where('master_id', (int)$request -> master_id) -> paginate(10)->withQueryString();
-            $defaultMaster = (int)$request -> master_id;
+        elseif ($request -> menu_id) {
+            $restaurants = Restaurant::where('menu_id', (int)$request -> menu_id) -> paginate(10)->withQueryString();
+            $defaultMaster = (int)$request -> menu_id;
         }
 
         // Paieška
@@ -68,7 +76,7 @@ class RestaurantController extends Controller
             'restaurants' => $restaurants,
             'dir' => $dir,
             'sort' => $sort,
-            'masters' => $masters,
+            'menus' => $menus,
             'defaultMaster' => $defaultMaster,
             's' => $s
         ]);
