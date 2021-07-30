@@ -19,19 +19,19 @@
 
                             <div class="form-group">
                                 <label>Price:</label>
-                                <input placeholder="Enter info about price" type="text" name="menu_price"
+                                <input placeholder="Enter info about portion price" type="text" name="menu_price"
                                     class="form-control" value="{{ old('menu_price') }}">
                             </div>
 
                             <div class="form-group">
                                 <label>Weight:</label>
-                                <input placeholder="Enter info about menu" type="text" name="menu_wins"
-                                    class="form-control" value="{{ old('menu_wins') }}">
+                                <input placeholder="Enter info about grams of portion" type="text" name="menu_weight"
+                                    class="form-control" value="{{ old('menu_weight') }}">
                             </div>
 
                             <div class="form-group">
                                 <label>Meat:</label>
-                                <textarea id="summernote" placeholder="Enter info about menu" type="text"
+                                <textarea placeholder="Enter the amount of meat" type="text"
                                     name="menu_about" class="form-control" value="{{ old('menu_about') }}"></textarea>
                             </div>
 
