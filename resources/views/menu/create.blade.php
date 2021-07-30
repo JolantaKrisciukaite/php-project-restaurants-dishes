@@ -31,8 +31,8 @@
 
                             <div class="form-group">
                                 <label>Meat:</label>
-                                <textarea placeholder="Enter the amount of meat" type="text"
-                                    name="menu_about" class="form-control" value="{{ old('menu_about') }}"></textarea>
+                                <input placeholder="Enter the amount of meat" type="text"
+                                    name="menu_meat" class="form-control" value="{{ old('menu_meat') }}">
                             </div>
 
                             <div class="form-group">
