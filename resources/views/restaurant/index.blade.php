@@ -7,8 +7,8 @@
                 <div class="card">
                     <div class="card-header">
                  
-                      <h3 class="titleMenus">Restaurants</h3>
-
+                      <h3 class="titleRestaurants">Restaurants</h3>
+         
                       <div>
                         <form action="{{ route('restaurant.index') }}" method="get" class="sort-form">
                             <fieldset>
