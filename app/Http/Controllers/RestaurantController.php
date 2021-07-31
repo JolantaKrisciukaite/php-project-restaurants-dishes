@@ -26,12 +26,10 @@ class RestaurantController extends Controller
         $dir = 'asc';
         $sort = 'title';
         $defaultMenu = 0;
-        $menus = Menu::all();
+        $menus = Menu::orderBy('title') -> get();
         $s = '';
 
         // Rušiavimas
-
-        // pabaigti šią dalį
 
         if ($request -> sort_by && $request -> dir) {
 

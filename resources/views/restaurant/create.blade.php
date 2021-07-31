@@ -34,7 +34,6 @@
                                         Title: {{$menu->title}} 🖐
                                         Price: {{$menu->price}} 💰
                                         Weight: {{$menu->weight}} ⌛
-                                        Meat: {{$menu->meat}} 🍚
                                     </option>
                                 @endforeach
                             </select>

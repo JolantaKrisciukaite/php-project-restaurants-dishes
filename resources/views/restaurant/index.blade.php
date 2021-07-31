@@ -14,10 +14,10 @@
                             <fieldset>
                                 <legend>Sort by</legend>
                                 <div>
-                                    <label>Type</label>
-                                    <input type="radio" name="sort_by" value="type" @if ('type' == $sort) checked @endif>
-                                    <label>Size</label>
-                                    <input type="radio" name="sort_by" value="size" @if ('size' == $sort) checked @endif>
+                                    <label>Title</label>
+                                    <input type="radio" name="sort_by" value="title" @if ('title' == $sort) checked @endif>
+                                    <label>Customers space</label>
+                                    <input type="radio" name="sort_by" value="customers" @if ('customers' == $sort) checked @endif>
                                 </div>
                             </fieldset>
 

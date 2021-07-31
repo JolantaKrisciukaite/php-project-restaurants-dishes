@@ -18,10 +18,57 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $menus = Menu::all();
-        return view('menu.index', ['menus' => $menus]);
+        $menus = Menu::orderBy('price', 'asc') -> paginate(10)->withQueryString();
+
+        $dir = 'asc';
+        $sort = 'price';
+        $defaultMenu = 0;
+        $s = '';
+
+        // Rušiavimas
+
+        // pabaigti šią dalį
+
+        if ($request -> sort_by && $request -> dir) {
+
+            if ('price'== $request -> sort_by && 'asc'== $request -> dir) {
+                $menus = Menu::orderBy('price') -> paginate(10)->withQueryString();
+            } 
+            
+            elseif ('price'== $request -> sort_by && 'desc'== $request -> dir) {
+                $menus = Menu::orderBy('price', 'desc') -> paginate(10)->withQueryString();
+                $dir = 'desc';
+            } 
+            
+            elseif ('title'== $request -> sort_by && 'asc'== $request -> dir) {
+                $menus = Menu::orderBy('title') -> paginate(10)->withQueryString();
+                $sort = 'title';
+            } 
+            
+            elseif ('title'== $request -> sort_by && 'desc'== $request -> dir) {
+                $menus = Menu::orderBy('title', 'desc') -> paginate(10)->withQueryString();
+                $dir = 'desc';
+                $sort = 'title';
+            } 
+            
+            else {
+                $menu = Menu::paginate(10)->withQueryString();
+            }
+        }
+        
+        else {
+            $menus = Menu::paginate(10)->withQueryString();
+        }
+
+        return view('menu.index', [
+            'dir' => $dir,
+            'sort' => $sort,
+            'menus' => $menus,
+            'defaultMenu' => $defaultMenu,
+            's' => $s
+        ]);
 
     }
 
@@ -46,7 +93,7 @@ class MenuController extends Controller
         $validator = Validator::make($request->all(),
         [
             'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
-            'menu_price' => ['required', 'decimal:6,2'],
+            'menu_price' => ['required'],
             'menu_weight' => ['required'],
             'menu_meat' => ['required'],
             'menu_about' => ['required']
@@ -107,15 +154,15 @@ class MenuController extends Controller
         $validator = Validator::make($request->all(),
         [
             'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
-            'menu_price' => ['required', 'decimal'],
+            'menu_price' => ['required'],
             'menu_weight' => ['required'],
             'menu_meat' => ['required'],
             'menu_about' => ['required']
         ],
 
         [
-            'menu_title.min' => 'menu title needs min. 3 symbols.',
-            'menu_title.max' => 'menu title needs max. 200 symbols.',
+            'menu_title.min' => 'menu price needs min. 3 symbols.',
+            'menu_title.max' => 'menu price needs max. 200 symbols.',
             // 'menu_price.decimal' => 'menu price needs number per decimal point'
         ]
             
@@ -144,7 +191,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         if($menu->menuRestaurant->count()){
-            return redirect()->route('menu.index')->with('info_message', 'Couldn\'t delete - Restaurant has a Menu');
+            return redirect()->route('menu.index')->with('info_message', 'Couldn\'t delete - Menu has a Menu');
         }
         $menu->delete();
         return redirect()->route('menu.index')->with('success_message', 'Menu deleted successfully.');

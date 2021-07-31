@@ -7,6 +7,31 @@
            <div class="card">
                <div class="titleMenus">Menus</div>
 
+               <div>
+                <form action="{{ route('menu.index') }}" method="get" class="sort-form">
+                    <fieldset>
+                        <legend>Sort by</legend>
+                        <div>
+                            <label>Price</label>
+                            <input type="radio" name="sort_by" value="price" @if ('price' == $sort) checked @endif>
+                            <label>Title</label>
+                            <input type="radio" name="sort_by" value="title" @if ('title' == $sort) checked @endif>
+                        </div>
+                    </fieldset>
+
+                        <fieldset class="direction">
+                            <legend>Direction</legend>
+                            <div>
+                                <label>Asc</label>
+                                <input type="radio" name="dir" value="asc" @if ('asc' == $dir) checked @endif>
+                                <label>Dsc</label>
+                                <input type="radio" name="dir" value="desc" @if ('desc' == $dir) checked @endif>
+                            </div>
+                        </fieldset>
+                        <button class="addButtonCreate" type="submit">Sort</button>
+                        <a href="{{ route('menu.index') }}" class="aButton">Clear</button></a>
+                    </form>
+
                <div class="card-body">
 
                     @foreach ($menus as $menu)
