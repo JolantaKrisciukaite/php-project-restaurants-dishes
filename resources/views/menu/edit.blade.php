@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label>About:</label>
                                 <textarea id="summernote" type="text" name="menu_about" class="form-control"
-                                    value="{{ old('menu_about', $menu->about) }}"></textarea>
+                                    value="{{ old('menu_about', $menu->about) }}">{{$menu->about}}</textarea>
                             </div>
 
                             @csrf

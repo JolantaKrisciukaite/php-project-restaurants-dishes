@@ -14,7 +14,7 @@
                     <div class="index">Price: {{$menu->price}} €</div>
                     <div class="index">Portion weight: {{$menu->weight}} g</div>
                     <div class="index">Amount of meat: {{$menu->meat}} g</div>
-                    <div class="index">About: {{$menu->about}}</div>
+                    <div class="index">About: {!!$menu->about!!}</div>
                
                     <form method="POST" action="{{route('menu.destroy', $menu)}}">
                         <a href="{{route('menu.edit', [$menu])}}" class="editButton">Edit</a>
