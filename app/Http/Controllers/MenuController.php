@@ -95,7 +95,7 @@ class MenuController extends Controller
             'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
             'menu_price' => ['required'],
             'menu_weight' => ['required'],
-            'menu_meat' => ['required'],
+            'menu_meat' => ['required', 'lte:'. $request -> menu_weight],
             'menu_about' => ['required']
         ],
         );
@@ -170,7 +170,7 @@ class MenuController extends Controller
             'menu_title' => ['required', 'min:3', 'max:200'],
             'menu_price' => ['required'],
             'menu_weight' => ['required'],
-            'menu_meat' => ['required'],
+            'menu_meat' => ['required', 'lte:'.$request -> menu_meat], 
             'menu_about' => ['required']
         ],
 
