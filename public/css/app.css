@@ -10301,7 +10301,7 @@ legend {
 
 .photo img {
   width: 200px;
-  height: 200px;
+  height: auto;
   margin-bottom: 23px;
 }
 

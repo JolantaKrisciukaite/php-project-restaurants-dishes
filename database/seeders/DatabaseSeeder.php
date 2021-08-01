@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'weight' => rand(300, 500),
                 'meat' => rand(0, 200),
                 'about' => $faker->realText(300, 5),
-                'photo' =>  rand(0, 2) ? $faker->imageUrl(200, 300) : null, // nuotrauku idejimas
+                'photo' =>  rand(0, 2) ? $faker->imageUrl(200, 200) : null, // nuotrauku idejimas
             ]);
         }
         

@@ -8,7 +8,7 @@
                     <div class="titleMenus">Edit new menu</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('menu.update', $menu) }}">
+                        <form method="POST" action="{{route('menu.update',$menu)}}" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label>Title:</label>
@@ -33,6 +33,20 @@
                                 <input type="text" name="menu_meat" class="form-control"
                                     value="{{ old('menu_meat', $menu->meat) }}">
                             </div>
+
+                            <div class="form-group">
+                                <div class="small-photo">
+                                     @if($menu->photo)
+                                         <img src="{{$menu->photo}}">
+                                         <label>Delete photo</label>
+                                         <input type="checkbox" name="delete_menu_photo">
+                                     @else
+                                          <img src="{{asset('noImage.jpg')}}">
+                                     @endif
+                                     <p class>Photo:</p>
+                                     <input type="file" name="menu_photo">
+                                 </div>
+                             </div>
 
                             <div class="form-group">
                                 <label>About:</label>

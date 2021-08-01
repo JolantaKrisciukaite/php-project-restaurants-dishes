@@ -239,6 +239,15 @@ if ($request->has('menu_photo')) {
      */
     public function destroy(Menu $menu)
     {
+        if ($menu->photo) {
+            $imageName = explode('/', $menu->photo);
+            $imageName = array_pop($imageName);
+            $path = public_path() . '/menus-images/'.$imageName;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+
         if($menu->menuRestaurant->count()){
             return redirect()->route('menu.index')->with('info_message', 'Couldn\'t delete - Menu has a Menu');
         }
