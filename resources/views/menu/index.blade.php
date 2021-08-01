@@ -39,6 +39,15 @@
                     <div class="card-body">
 
                         @foreach ($menus as $menu)
+
+                        <div class="photo"> 
+                            @if ($menu->photo)
+                            <img src="{{$menu->photo}}">
+                            @else
+                            <img src="{{asset('noImage.jpg')}}">
+                            @endif
+                        </div>
+
                             <div class="index">Meal title: {{ $menu->title }}</div>
                             <div class="index">Price: {{ $menu->price }} €</div>
                             <div class="index">Portion weight: {{ $menu->weight }} g</div>

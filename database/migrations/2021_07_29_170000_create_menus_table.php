@@ -20,6 +20,7 @@ class CreateMenusTable extends Migration
             $table->integer('weight');
             $table->integer('meat');
             $table->text('about');
+            $table->string('photo', 200)->nullable(); // nuotrauku idejimas
             $table->timestamps();
         });
     }

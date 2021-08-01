@@ -110,6 +110,20 @@ class MenuController extends Controller
         // }
 
         $menu = new Menu;
+
+        if ($request->has('menu_photo')) {
+            $photo = $request->file('menu_photo');
+            $imageName = 
+            $request->menu_title. '-' .
+            $request->menu_price. '-' .
+            time(). '.' .
+            $photo->getClientOriginalExtension();
+            $path = public_path() . '/menus-images/'; // serverio vidinis kelias
+            $url = asset('menus-images/'.$imageName); // url narsyklei (isorinis)
+            $photo->move($path, $imageName); // is serverio tmp ===> i public folderi
+            $menu->photo = $url;
+        }
+
         $menu->title = $request->menu_title;
         $menu->price = $request->menu_price;
         $menu->weight = $request->menu_weight;

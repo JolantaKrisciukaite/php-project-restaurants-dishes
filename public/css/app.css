@@ -10299,6 +10299,24 @@ legend {
   color: #ADFF2F;
 }
 
+.photo img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 23px;
+}
+
+.small-photo img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 9px;
+}
+
+input[type=file] {
+  border-radius: 6px;
+  color: #ffffff;
+  background-color: #470153;
+}
+
 /*!
  * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

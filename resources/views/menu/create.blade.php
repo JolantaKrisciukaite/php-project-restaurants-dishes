@@ -9,7 +9,7 @@
                     <h3 class="titleMenus">Create new menu</h3>
                    
                     <div class="card-body">
-                        <form method="POST" action="{{ route('menu.store') }}">
+                        <form method="POST" action="{{route('menu.store')}}" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label>Title:</label>
@@ -33,6 +33,11 @@
                                 <label>Meat:</label>
                                 <input placeholder="Enter the amount of meat" type="text"
                                     name="menu_meat" class="form-control" value="{{ old('menu_meat') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <p>Photo:</p>
+                                <input type="file" name="menu_photo" class="menu_photo">
                             </div>
 
                             <div class="form-group">
