@@ -167,7 +167,7 @@ class MenuController extends Controller
 
         $validator = Validator::make($request->all(),
         [
-            'menu_title' => ['required', 'min:3', 'max:200', 'alpha'],
+            'menu_title' => ['required', 'min:3', 'max:200'],
             'menu_price' => ['required'],
             'menu_weight' => ['required'],
             'menu_meat' => ['required'],
@@ -199,15 +199,15 @@ class MenuController extends Controller
                 $menu->photo = null;
         }
 
-if ($request->has('menu_photo')) {
-		if ($menu->photo) {
-                $imageName = explode('/', $menu->photo);
-                $imageName = array_pop($imageName);
-                $path = public_path() . '/menus-images/'.$imageName;
-                if (file_exists($path)) {
-                    unlink($path);
+        if ($request->has('menu_photo')) {
+            if ($menu->photo) {
+                    $imageName = explode('/', $menu->photo);
+                    $imageName = array_pop($imageName);
+                    $path = public_path() . '/menus-images/'.$imageName;
+                    if (file_exists($path)) {
+                        unlink($path);
+                    }
                 }
-            }
 
             $photo = $request->file('menu_photo');
             $imageName = 
@@ -227,7 +227,7 @@ if ($request->has('menu_photo')) {
         $menu->meat = $request->menu_meat;
         $menu->about = $request->menu_about;
         $menu->save();
-        return redirect()->route('menu.index')->with('success_message', 'Menu updated successfully');
+        return redirect()->route('menu.index')->with('success_message', 'Menu updated successfully.');
 
     }
 

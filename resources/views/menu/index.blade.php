@@ -36,6 +36,11 @@
 
                         </div>
                     </div>
+
+                    <div class="pager-links">
+                        {{ $menus->links() }}
+                    </div>
+                    
                     <div class="card-body">
 
                         @foreach ($menus as $menu)
@@ -62,6 +67,9 @@
                             <br>
                         @endforeach
 
+                    </div>
+                    <div class="pager-links">
+                        {{ $menus->links() }}
                     </div>
                 </div>
             </div>
