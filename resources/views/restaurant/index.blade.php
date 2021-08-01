@@ -40,7 +40,7 @@
                                     <select class="index" name="menu_id"><br>
                                         @foreach ($menus as $menu)
                                             <option value="{{ $menu->id }}" @if($defaultMenu == $menu->id) selected @endif>
-                                                {{$menu->title}} 
+                                                Title: {{$menu->title}} 
                                             </option>
                                         @endforeach
                                     </select>
