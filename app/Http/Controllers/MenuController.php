@@ -186,6 +186,41 @@ class MenuController extends Controller
             $request->flash();
             return redirect()->back()->withErrors($validator);
         }
+
+        if ($request->has('delete_menu_photo')){
+            if ($menu->photo) {
+                $imageName = explode('/', $menu->photo);
+                $imageName = array_pop($imageName);
+                $path = public_path() . '/menus-images/'.$imageName;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+                $menu->photo = null;
+        }
+
+if ($request->has('menu_photo')) {
+		if ($menu->photo) {
+                $imageName = explode('/', $menu->photo);
+                $imageName = array_pop($imageName);
+                $path = public_path() . '/menus-images/'.$imageName;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $photo = $request->file('menu_photo');
+            $imageName = 
+            $request->menu_name. '-' .
+            $request->menu_price. '-' .
+            time(). '.' .
+            $photo->getClientOriginalExtension();
+            $path = public_path() . '/menus-images/'; // serverio vidinis kelias
+            $url = asset('menus-images/'.$imageName); // url narsyklei (isorinis)
+            $photo->move($path, $imageName); // is serverio tmp ===> i public folderi
+            $menu->photo = $url;
+        }
+        
         $menu->title = $request->menu_title;
         $menu->price = $request->menu_price;
         $menu->weight = $request->menu_weight;
